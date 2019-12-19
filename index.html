@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FizzBuzz</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Cuprum&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    body,
+    html,
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Cuprum', sans-serif;
+    }
+
+    body {
+      background: rgb(108, 135, 185);
+    }
+
+    #container {
+      display: flex;
+      justify-content: center;
+    }
+
+    #title-text {
+      text-align: center;
+      margin-top: 100px;
+    }
+
+    p {
+      font-size: 1.3em;
+    }
+
+    #show-table {
+      margin-top: 100px;
+      width: 200px;
+      height: 60px;
+      font-size: 1.4em;
+      border-radius: 9px;
+    }
+
+    #show-code {
+      width: 180px;
+      height: 50px;
+      font-size: 1.4em;
+      border-radius: 9px;
+    }
+
+    button:hover {
+      background-color: rgb(86, 89, 92);
+      color: red;
+    }
+
+    #main {
+      border-radius: 5px;
+      border: 3px solid rgb(217, 217, 231);
+      display: none;
+
+      margin-top: 50px;
+      max-height: 800px;
+
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+
+    tr {
+      border: 2px solid black;
+      text-align: center;
+    }
+
+    td {
+      width: 200px;
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    .silo {
+      position: absolute;
+      top: 900px;
+      margin-bottom: 40px;
+    }
+
+    #code {
+      display: none;
+      margin-top: 100px;
+    }
+  </style>
+
+  <body>
+    <div id="container">
+      <div id="title-text">
+        <p>
+          Fizz Buzz is a common and classic coding excersize in which the
+          program should loop through the numbers 1-100 and print out: <br />
+          fizz, if the number is divisible by 3 <br />
+          buzz, if the number is divisible by 5 <br />
+          fizzbuzz, if the number is divisible by 3 and 5
+        </p>
+        <button id="show-table">Show The Output</button>
+      </div>
+
+      <div id="main"></div>
+      <div id="code">
+        <pre>
+            for (i = 1; i <= 100; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    FizzBuzz
+                } else if (i % 3 === 0) {
+                    Fizz
+                } else if (i % 5 === 0) {
+                    Buzz
+                }
+            }
+
+            A simple loop through 100 iterations will allow us to check each number
+            We start with numbers divisible by both 3 and 5 for correct behavior 
+            when using a 'for' loop for this excersize.
+          </pre
+        >
+      </div>
+
+      <div class="silo">
+        <button id="show-code">Show The Code</button>
+      </div>
+    </div>
+
+    <script>
+      const main = document.getElementById('main');
+      const table = document.createElement('table');
+      const htr = document.createElement('tr');
+      htr.appendChild(document.createElement('td'));
+      htr.appendChild(document.createElement('td'));
+      htr.appendChild(document.createElement('td'));
+      htr.cells[0].appendChild(document.createTextNode('n'));
+      htr.cells[1].appendChild(document.createTextNode('Divisable by 3'));
+      htr.cells[2].appendChild(document.createTextNode('Divisable by 5'));
+      htr.cells[0].style.fontWeight = 'bolder';
+      htr.cells[1].style.fontWeight = 'bolder';
+      htr.cells[2].style.fontWeight = 'bolder';
+      htr.cells[0].style.fontSize = '1.5em';
+      htr.cells[1].style.fontSize = '1.5em';
+      htr.cells[2].style.fontSize = '1.5em';
+      htr.cells[0].style.borderBottom = '3px solid white';
+      htr.cells[1].style.borderBottom = '3px solid white';
+      htr.cells[2].style.borderBottom = '3px solid white';
+      table.appendChild(htr);
+
+      for (i = 1; i <= 100; i++) {
+        let tr = document.createElement('tr');
+        tr.appendChild(document.createElement('td'));
+        tr.appendChild(document.createElement('td'));
+        tr.appendChild(document.createElement('td'));
+        if (i % 3 === 0 && i % 5 === 0) {
+          tr.cells[0].appendChild(document.createTextNode(i));
+          tr.cells[1].appendChild(document.createTextNode('fizz'));
+          tr.cells[2].appendChild(document.createTextNode('buzz'));
+        } else if (i % 3 === 0) {
+          tr.cells[0].appendChild(document.createTextNode(i));
+          tr.cells[1].appendChild(document.createTextNode('fizz'));
+          tr.cells[2].appendChild(document.createTextNode('***'));
+        } else if (i % 5 === 0) {
+          tr.cells[0].appendChild(document.createTextNode(i));
+          tr.cells[1].appendChild(document.createTextNode('***'));
+          tr.cells[2].appendChild(document.createTextNode('buzz'));
+        } else {
+          tr.cells[0].appendChild(document.createTextNode(i));
+          tr.cells[1].appendChild(document.createTextNode('***'));
+          tr.cells[2].appendChild(document.createTextNode('***'));
+        }
+        table.appendChild(tr);
+      }
+
+      main.appendChild(table);
+
+      const btn = document
+        .getElementById('show-table')
+        .addEventListener('click', () => {
+          main.style.display = 'block';
+          document.getElementById('title-text').style.display = 'none';
+        });
+
+      const btn2 = document
+        .getElementById('show-code')
+        .addEventListener('click', () => {
+          main.style.display = 'none';
+          document.getElementById('code').style.display = 'block';
+        });
+    </script>
+  </body>
+</html>
